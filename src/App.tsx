@@ -5,6 +5,7 @@ import Project from "@/pages/frontend/Project"
 import Team from "@/pages/frontend/Team"
 import Login from "@/pages/auth/Login"
 import Register from "@/pages/auth/Register"
+import Dashboard from "@/pages/backend/Dashboard"
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
      {/* Auth Page  */}
      <Route path="/login" element={<Login />}/>
      <Route path="/register" element={<Register />}/>
+
+     <Route path="/dashboard" element={<Dashboard />}/>
 
     </Route>
   </Routes>

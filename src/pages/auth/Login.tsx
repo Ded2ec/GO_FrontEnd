@@ -2,6 +2,8 @@ import AuthLayout from '@/components/layouts/AuthLayout'
 import { useForm,SubmitHandler } from 'react-hook-form';
 import { NavLink } from 'react-router-dom'
 import { authLogin } from '@/services/authUserAPI';
+import Swal from 'sweetalert2';
+import { AxiosError } from 'axios';
 
 // กำหนด interface สำหรับข้อมูลฟอร์ม
 interface IFormInput {
@@ -9,6 +11,11 @@ interface IFormInput {
     password: string
 }
 
+// กำหนดประเภทของ Error ที่ได้รับจาก API
+interface APIError {
+    message: string
+    status: number
+}
 
 function Login() {
 
@@ -21,19 +28,50 @@ function Login() {
     // Handle form submit
      const onSubmit:SubmitHandler<IFormInput> = (data) =>{
         // console.log(data)
-            const authdata = {
+            const authData = {
                 "email": data.email,
                 "password": data.password
                             }
 
      //Call API
-        authLogin(authdata)
-        .then(respone => {
-            console.log(respone)
-        })
-        .catch(error => {
-            console.log(error)})
-     }
+     authLogin(authData)
+     .then(response => {
+
+         // console.log(response)
+         // แสดงข้อความ Success ด้วย SweetAlert
+         Swal.fire({
+             icon: 'success',
+             title: 'Success',
+             text: 'Login successful'
+         })
+
+         // ถ้า Login สำเร็จ ให้เก็บข้อมูลลง localStorage
+         localStorage.setItem('access_token', response.data.access_token)
+         localStorage.setItem('refresh_token', response.data.refresh_token)
+         localStorage.setItem('user', JSON.stringify(response.data.user))
+
+         setTimeout(() => {
+             // Redirect ไปหน้า Home
+             window.location.href = "/"
+         }, 2000)
+         
+
+     })
+     .catch((err: AxiosError<APIError>) => {
+         if (err.response) {
+             console.log(`Error: ${err.response.data.message}, Status: ${err.response.status}`)
+             // แสดงข้อความ Error ด้วย SweetAlert
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Error',
+                 text: 'Invalid email or password'
+             })
+         } else {
+             console.log('An unexpected error occurred')
+         }
+     })
+
+}
 
   return (
     <AuthLayout>
