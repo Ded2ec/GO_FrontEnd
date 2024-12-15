@@ -20,7 +20,7 @@ interface LoginData {
 
 // สร้าง login function
 const authLogin = (data: LoginData): Promise<AxiosResponse<AuthResponse>> => {
-    return Axios.post<AuthResponse>("/authenticate", data, {
+    return Axios.post<AuthResponse>("/login", data, {
     baseURL: import.meta.env.VITE_BASE_URL_API,
     //   baseURL: "http://localhost:8080/api/v1/",
       headers: {

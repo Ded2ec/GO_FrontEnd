@@ -52,7 +52,7 @@ function Login() {
 
          setTimeout(() => {
              // Redirect ไปหน้า Home
-             window.location.href = "/"
+             window.location.href = "/backend/dashboard"
          }, 2000)
          
 
