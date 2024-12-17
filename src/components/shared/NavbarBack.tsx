@@ -73,7 +73,7 @@ function NavbarBack() {
               `flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item ${isActive ? 'active-nav-link' : ''}`
             }
           >
-            <FontAwesomeIcon icon={faFileVideo} /> &nbsp; Genres
+            <FontAwesomeIcon icon={faFileVideo} /> &nbsp; Type Movies
           </NavLink>
 
           <NavLink

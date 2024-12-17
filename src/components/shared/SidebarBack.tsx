@@ -35,7 +35,7 @@ function SidebarBack() {
             `flex items-center text-white py-4 pl-6 nav-item ${isActive ? 'active-nav-link' : ''}`
           }
         >
-          <FontAwesomeIcon icon={faFileVideo} /> &nbsp; Genres
+          <FontAwesomeIcon icon={faFileVideo} /> &nbsp; Type Movies
         </NavLink>
 
         <NavLink

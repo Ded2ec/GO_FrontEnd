@@ -1,4 +1,4 @@
-import http from '@/services/ConfigAxios'
+import http from '@/services/configAxios'
 
 // Read All Genres
 const getAllGenres = async () => {
